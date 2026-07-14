@@ -384,6 +384,8 @@ def main(server : list) -> None:
 
     # Waiting for data
     data, _ = sock.recvfrom(1400)
+
+    print(data)
     
     # Not a valid challenge code response
     # The response is something like this: \xff\xff\xff\xffA"Q\x88H
@@ -393,9 +395,9 @@ def main(server : list) -> None:
     
     # Now, we have the challenge code
     ChallengeCode, = struct.unpack_from("<l", data, 5) # Long
-
+    
     # We are free to ask for full A2S_PLAYER
-    PayloadA2S_PLAYER = b'\xff\xff\xff\xff\x55' + int.to_bytes(ChallengeCode, 4, byteorder='little', signed=False)
+    PayloadA2S_PLAYER = b'\xff\xff\xff\xff\x55' + ChallengeCode.to_bytes(4, byteorder='little', signed=True)
 
     # Sending the payload
     sock.sendto(PayloadA2S_PLAYER, server)
@@ -431,7 +433,7 @@ def main(server : list) -> None:
     ChallengeCode, = struct.unpack_from("<l", data, 5) # Long
 
     # We are free to ask for full A2S_RULES
-    PayloadA2S_RULES = b'\xff\xff\xff\xff\x56' + int.to_bytes(ChallengeCode, 4, byteorder='little', signed=False)
+    PayloadA2S_RULES = b'\xff\xff\xff\xff\x56' + ChallengeCode.to_bytes(4, byteorder='little', signed=True)
 
     # Sending the payload
     sock.sendto(PayloadA2S_RULES, server)
