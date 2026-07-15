@@ -279,7 +279,7 @@ def HandleReadFragmentsOOB(sock : socket.socket, data : bytes, offset : int) -> 
         try:
             packet, _ = sock.recvfrom(1400)
         except socket.timeout:
-            print("Timeout la primirea fragmentelor OOB.")
+            print("Timeout occured")
             break
 
         offset = 0
@@ -304,7 +304,7 @@ def HandleReadFragmentsOOB(sock : socket.socket, data : bytes, offset : int) -> 
         if i in fragments:
             fullMsg += fragments[i]
         else:
-            print(f"Eroare: Lipsește fragmentul cu indexul {i}!")
+            print(f"Error, missing fragment {i}!")
             return b""
 
     return bytes(fullMsg)
