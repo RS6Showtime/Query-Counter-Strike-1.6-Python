@@ -18,4 +18,4 @@ Sometimes it is required to run the script one more time to get the full report.
 Used for education only.
 
 # Documentation
-A full source of information can be found here: `https://mix-panel.ro/query-cs16-servers/`
+A full source of information can be found here: https://mix-panel.ro/query-cs16-servers/
