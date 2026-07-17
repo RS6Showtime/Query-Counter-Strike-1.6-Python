@@ -108,9 +108,7 @@ def main():
     # Writing a byte (Header) 1 byte
     PayloadA2S_Rules += struct.pack("<b", ord("V"))
 
-    # Writing the value -1 as long type (signed int) 4 Bytes
-    # Because here we need to specify the ChallengeCode, but
-    # because we don't know it, we will ask it from the server!
+    # Now, we specify the ChallengeCode instead of -1
     PayloadA2S_Rules += struct.pack("<l", ChallengeCode)
 
     # Static payload
