@@ -60,9 +60,7 @@ def main():
     # Writing a byte (Header) 1 byte
     PayloadA2S_Player += struct.pack("<b", ord("U"))
 
-    # Writing the value -1 as long type (signed int) 4 Bytes
-    # Because here we need to specify the ChallengeCode, but
-    # because we don't know it, we will ask it from the server!
+    # Now, we specify the ChallengeCode instead of -1
     PayloadA2S_Player += struct.pack("<l", ChallengeCode)
 
     # Static payload
